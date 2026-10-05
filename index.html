@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radares BR-153</title>
+  <meta name="description" content="Análise dos dados de tráfego dos radares de controle de velocidade da BR-153 (Transbrasiliana), a partir do Sistema de Informação de Rodovias da ANTT.">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="topo-int">
+      <div class="titulo">
+        <p class="sobretitulo">ANTT · Sistema de Informação de Rodovias</p>
+        <h1 id="titulo-rodovia">Radares de velocidade da BR-153 (Transbrasiliana)</h1>
+        <p class="subtitulo" id="resumo-fonte">Carregando dados…</p>
+      </div>
+      <div class="filtros" aria-label="Filtros">
+        <label>Período
+          <select id="f-periodo">
+            <option value="completo">Completo</option>
+            <option value="comum">Comum a todos os equipamentos</option>
+          </select>
+        </label>
+        <label>Equipamento
+          <select id="f-equip">
+            <option value="todos">Todos</option>
+          </select>
+        </label>
+        <label class="botao-arquivo" title="Carregar outro arquivo CSV no mesmo formato">
+          Carregar CSV
+          <input type="file" id="f-arquivo" accept=".csv,text/csv">
+        </label>
+      </div>
+    </div>
+    <nav class="abas" role="tablist" aria-label="Análises">
+      <button role="tab" data-aba="caracterizacao" aria-selected="true"><span>1</span>Caracterização do conjunto de dados</button>
+      <button role="tab" data-aba="composicao" aria-selected="false"><span>2</span>Tipo de veículo × velocidade</button>
+      <button role="tab" data-aba="distribuicao" aria-selected="false"><span>3</span>Distribuição de velocidade por tipo de veículo</button>
+      <button role="tab" data-aba="temporal" aria-selected="false"><span>4</span>Variação temporal do tráfego</button>
+      <button role="tab" data-aba="espacial" aria-selected="false"><span>5</span>Análise espacial e operacional</button>
+    </nav>
+  </header>
+
+  <main id="conteudo" role="tabpanel" tabindex="-1">
+    <div class="carregando"><div class="spinner" aria-hidden="true"></div>Carregando e processando o arquivo de dados…</div>
+  </main>
+
+  <div id="tooltip" role="tooltip" hidden></div>
+
+  <footer class="rodape">
+    Fonte: ANTT — volume de tráfego nos radares de controle de velocidade (arquivo <code>volume-radar-trans.csv</code>).
+    Todos os números são calculados no navegador a partir do arquivo carregado.
+  </footer>
+
+  <!-- Scripts clássicos com defer: funcionam no Vite/Vercel e abrindo o arquivo direto do disco. -->
+  <script defer src="./data/dados.js"></script>
+  <script defer src="./js/formatacao.js"></script>
+  <script defer src="./js/leitor.js"></script>
+  <script defer src="./js/analise.js"></script>
+  <script defer src="./js/graficos.js"></script>
+  <script defer src="./js/abas.js"></script>
+  <script defer src="./js/app.js"></script>
+</body>
+</html>
